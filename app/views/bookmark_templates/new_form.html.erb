@@ -1,0 +1,38 @@
+<!-- Validation failure messages -->
+<% if @bookmark.present? %>
+  <% if @bookmark.errors.any? %>
+    <% @bookmark.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new bookmark
+</h1>
+
+
+<hr>
+
+<form action="/create_bookmark" method="post">
+
+  <div class="form-group">
+    <label for="movie_id">
+      Movie
+    </label>
+
+    <%= select_tag("movie_id", options_from_collection_for_select(Movie.all, :id, :title, @bookmark.movie_id), :class => "form-control") %>
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create bookmark
+  </button>
+</form>
+
+<hr>
+
+<a href="/bookmarks">
+  Go back
+</a>

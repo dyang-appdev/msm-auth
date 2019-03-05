@@ -24,8 +24,9 @@ class CharactersController < ApplicationController
 
     if @character.valid?
       @character.save
-
-      redirect_to("/actors/#{@character.actor_id}", :notice => "Character created successfully.")
+      
+      redirect_back :fallback_location => "/actors/#{@character.actor_id}", :notice => "Character created successfully."
+      # redirect_to("/actors/#{@character.actor_id}", :notice => "Character created successfully.")
     else
       render("character_templates/new_form.html.erb")
     end

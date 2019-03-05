@@ -19,5 +19,14 @@ class Actor < ApplicationRecord
   }
   
   has_many :characters
+  
+  # --- below are two alternative codes for has_many :characters---
+  
+  # has_many :characters, :class_name => "Character",  :foreign_key => "actor_id"
+  
+  # def characters
+  #   return Character.where({actor.id => self.id })
+  # end
+
   has_many :movies, through: :characters
 end
